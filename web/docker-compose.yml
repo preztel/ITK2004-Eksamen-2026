@@ -1,19 +1,22 @@
-version: "3.9"
-
 services:
   db:
     image: mariadb:11
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassord
-      MYSQL_DATABASE: kontorutleie
-      MYSQL_USER: appbruker
-      MYSQL_PASSWORD: apppassord
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
     volumes:
       - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
       - db_data:/var/lib/mysql
     ports:
-      - "3306:3306"
+      - "127.0.0.1:3306:3306"
+    healthcheck:
+      test: ["CMD", "healthcheck.sh", "--connect", "--innodb_initialized"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   app:
     build: .
@@ -22,12 +25,13 @@ services:
       - "3000:3000"
     environment:
       DB_HOST: db
-      DB_USER: appbruker
-      DB_PASSWORD: apppassord
-      DB_NAME: kontorutleie
-      SESSION_SECRET: hemmelignoekkel123
+      DB_USER: ${MYSQL_USER}
+      DB_PASSWORD: ${MYSQL_PASSWORD}
+      DB_NAME: ${MYSQL_DATABASE}
+      SESSION_SECRET: ${SESSION_SECRET}
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
 volumes:
   db_data:
