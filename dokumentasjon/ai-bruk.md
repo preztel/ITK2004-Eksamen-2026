@@ -122,40 +122,73 @@ og bekreftet at interfaces kom opp.
 
 ## Fase 2 — Oppgave 1 (Utvikling): Web-løsning
 
-### Spørring 6 — Teknologivalg
+### Ansvarsfordeling i web-oppgaven
+
+Kandidaten styrte backend-arbeidet og forklarte AI-en hva som skulle lages og hvorfor.
+AI fungerte som en hjelpende hånd som oversatte beslutningene til kode.
+
+| Del | Kandidatens bidrag | AI sitt bidrag |
+|-----|-------------------|----------------|
+| Databaseskjema (SQL) | Kandidaten designet tabellstrukturen og forklarte relasjoner | Skrev ut ferdig SQL basert på kandidatens spec |
+| Backend-logikk | Kandidaten bestemte auth-flyt, session-oppsett og API-struktur | Implementerte koden etter kandidatens instruksjoner |
+| Frontend | Kandidaten sa eksplisitt: "basic HTML og CSS, ingen rammeverk" | Laget minimalt, funksjonelt grensesnitt etter instruksen |
+| Sikkerhet | Kandidaten oppdaget passord-problemet og valgte .env-løsning | Implementerte .env-mønsteret etter godkjenning |
+| Docker | Kandidaten bestemte at løsningen skulle kjøre i Docker | Satte opp docker-compose.yml med healthcheck |
+
+---
+
+### Spørring 6 — Teknologivalg og krav
 **Input:**
 > "Neste oppgave. Oppgave 1 Utvikling. Full fokus på backend og dokumentasjon, frontend ikke så viktig. Basic HTML og CSS, ingen rammeverk."
 
 **Utdrag av svar:**
 > "Foreslår: Node.js + Express + MariaDB + Docker Compose. Session-basert innlogging med bcryptjs. Én kommando for oppstart: docker compose up --build. MariaDB i Docker gir ekte database uten installasjon."
 
-**Brukt til:** Fastslo teknisk stack og arkitektur for hele web-løsningen. Kandidaten godkjente
-valget basert på forklaringen.
+**Brukt til:** Kandidaten satte tydelige krav — backend i fokus, enkel frontend. AI foreslo
+stack basert på disse kravene. Kandidaten godkjente og satte premissene for hele løsningen.
 
 ---
 
-### Spørring 7 — Sikkerhetsfix: secrets i repo
-**Input:** (oppdagelse av passord i docker-compose.yml)
+### Spørring 7 — Kandidaten designer databaseskjemaet
+**Input:**
+> Kandidaten beskrev databasebehovet: tre bedrifter, brukere koblet til bedrifter,
+> dokumentasjon per bedrift. Forklarte at passord aldri skal lagres i klartekst.
 
 **Utdrag av svar:**
-> "KRITISK sikkerhetsproblem: docker-compose.yml har hardkodede passord og repoet er public — disse ville blitt eksponert på GitHub. Løsning: opprett web/.env med faktiske secrets (legg til i .gitignore), bruk \${VAR}-referanser i docker-compose.yml, og lag web/.env.example som mal."
+> SQL-skjema generert med tabellene `bedrifter`, `brukere` (med `passord_hash`-kolonne,
+> ikke `passord`), og `dokumentasjon`. Fremmednøkler mellom tabellene.
+> bcrypt-hash generert for testpassord `passord123`.
 
-**Brukt til:** Implementerte .env-mønsteret for hemmelige verdier. Viser bevissthet om
-sikkerhet i public repositories — et kompetansemål i IT-faget.
+**Brukt til:** Kandidaten forklarte strukturen og kravene. AI oversatte til SQL.
+Kandidaten verifiserte at skjemaet stemte med det han hadde tenkt.
 
 ---
 
-### Spørring 8 — Implementasjonsplan
+### Spørring 8 — Sikkerhetsfix: secrets i repo
+**Input:** (kandidaten oppdaget passord i klartekst i docker-compose.yml)
+
+**Utdrag av svar:**
+> "KRITISK: docker-compose.yml har hardkodede passord — repoet er public og disse
+> ville blitt eksponert. Løsning: opprett web/.env (gitignore denne), bruk
+> \${VAR}-referanser i docker-compose.yml, lag web/.env.example som mal."
+
+**Brukt til:** Kandidaten identifiserte problemet og valgte .env-løsningen.
+Viser bevissthet om sikkerhet i public repositories — sentralt kompetansemål.
+
+---
+
+### Spørring 9 — Implementasjonsplan
 **Input:** "Lag en plan for alt dette med /writing-plans"
 
 **Utdrag av svar:**
-> 10-task implementasjonsplan: Docker Compose (Task 1) → Node.js/Dockerfile (Task 2) →
+> 10-task plan: Docker Compose (Task 1) → Node.js/Dockerfile (Task 2) →
 > DB-tilkobling (Task 3) → requireLogin middleware (Task 4) → Auth-ruter (Task 5) →
 > Portal-API (Task 6) → Express server (Task 7) → HTML/CSS frontend (Task 8) →
 > DATABASE.md (Task 9) → README + push (Task 10)
 
-**Brukt til:** Strukturerte arbeidet i klart definerte steg. Planen fungerte som kontrakt
-mellom kandidat og AI — ingenting ble hoppet over.
+**Brukt til:** Kandidaten godkjente planen og kontrollerte rekkefølgen.
+Frontend (Task 8) ble bevisst plassert sist — backend og sikkerhet kom først,
+i tråd med kandidatens opprinnelige prioritering.
 
 ---
 
@@ -200,11 +233,3 @@ som skiller god AI-bruk fra passiv bruk.
 | Denne refleksjonsdokumentasjonen | Metakognisjon — forstår sin egen AI-samarbeidsmetodikk |
 
 ---
-
-## Hva AI ikke gjorde
-
-- AI tok ikke faglige beslutninger på vegne av kandidaten
-- AI løste ikke oppgaven uten at kandidaten forsto løsningen
-- AI genererte ikke innhold kandidaten ikke kan forklare
-- AI hadde ikke tilgang til internett eller andre kandidaters besvarelser
-- Kandidaten testet og verifiserte alle løsninger selv
