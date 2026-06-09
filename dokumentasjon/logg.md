@@ -61,6 +61,73 @@ Verktøy: Claude (claude.ai / Claude Code)
 
 ---
 
+---
+
+## Bilde 8 — Router running-config (eierskap)
+**Tidspunkt:** ~10:50  
+**Fil:** `bilder/running_config.png`  
+**Beskrivelse:** `show running-config` på Router0 viser hele konfigurasjonen kandidaten selv tastet inn. Øverst vises at alle 5 interfaces kom opp: Gi0/0, Gi0/0.10, Gi0/0.20, Gi0/0.30, Gi0/0.99. Konfigurasjonen inneholder subinterfaces med dot1Q encapsulation og IP-adresser for alle VLAN.  
+**Bevis:** Viser at router-on-a-stick er konfigurert korrekt av kandidaten.
+
+---
+
+## Bilde 9 — Switch show vlan brief (eierskap)
+**Tidspunkt:** ~10:50  
+**Fil:** `bilder/show_vlan_brief.png`  
+**Beskrivelse:** `show vlan brief` på Switch0 viser VLAN-tabellen. VLAN 10, 20, 30 og 99 er opprettet og portene er tildelt korrekt. Fa0/1–Fa0/3 er i VLAN 10, Fa0/4–Fa0/6 i VLAN 20, Fa0/7–Fa0/9 i VLAN 30, Fa0/10 i VLAN 99.  
+**Bevis:** Kandidaten navigerte switch CLI og verifiserte konfigurasjonen selv.
+
+---
+
+## Bilde 10 — Ping-test fra PC0 (eierskap)
+**Tidspunkt:** ~10:51  
+**Fil:** `bilder/ping_test.png`  
+**Beskrivelse:** Ping-test utført fra PC0 sin Command Prompt. Tester intra-VLAN (til PC1, VLAN 10) og inter-VLAN (til PC2, VLAN 20).  
+**Resultat:** Ping til PC1 → Reply ✅ | Ping til PC2 → Timed out ✅  
+**Bevis:** Kandidaten utførte testene selv og bekreftet at VLAN-isolasjonen fungerer som forventet.
+
+---
+
+## Bilde 11 — IP-konfigurasjon PC0 (eierskap)
+**Tidspunkt:** ~10:51  
+**Fil:** `bilder/ip_config.png`  
+**Beskrivelse:** IP Configuration-vinduet på PC0 viser IP-adressen kandidaten satte inn: 192.168.10.2, subnettmaske 255.255.255.0, gateway 192.168.10.1 (Router0 subinterface Gi0/0.10).  
+**Bevis:** Kandidaten konfigurerte IP-adressene på enhetene manuelt.
+
+---
+
+## Bilde 12 — Web-løsning: Forside (eierskap)
+**Tidspunkt:** ~10:52  
+**Fil:** `bilder/web_forside.png`  
+**Beskrivelse:** Den offentlige markedsføringssiden for KontorLeie AS åpnet i nettleser på http://localhost:3000. Viser tjenestebeskrivelse med 4 kort (Kontorplass, Nettverksoppsett, Teknisk support, Kundeportal) og navigasjon til kundeportalen.  
+**Bevis:** Kandidaten startet Docker-stacken og bekreftet at web-løsningen kjører.
+
+---
+
+## Bilde 13 — Web-løsning: Innloggingsside (eierskap)
+**Tidspunkt:** ~10:52  
+**Fil:** `bilder/login_web_side.png`  
+**Beskrivelse:** Innloggingssiden for kundeportalen på http://localhost:3000/login.html. Viser skjema med brukernavn- og passordfelt.  
+**Påloggingsinfo brukt:** brukernavn: bedrift1 / passord: passord123
+
+---
+
+## Bilde 14 — Web-løsning: Bedrift 1 dashboard (eierskap)
+**Tidspunkt:** ~10:53  
+**Fil:** `bilder/bedrift_data.png`  
+**Beskrivelse:** Kundeportalen etter innlogging som bedrift1 (Bedrift AS, VLAN 10). Portalen henter data fra MariaDB via det beskyttede API-et /api/docs og /api/nettverk. Viser VLAN-nummer, nettverk, gateway og nettverksdokumentasjon spesifikt for Bedrift AS.  
+**Bevis:** Session-basert innlogging fungerer. Data hentes dynamisk fra database.
+
+---
+
+## Bilde 15 — Web-løsning: Bedrift 2 dashboard — isolasjon bekreftet (eierskap)
+**Tidspunkt:** ~10:53  
+**Fil:** `bilder/annen_bedrift_data.png`  
+**Beskrivelse:** Samme kundeportal, men innlogget som bedrift2 (Konsulent AS, VLAN 20). Portalen viser Konsulent AS sin nettverksdokumentasjon — ikke Bedrift AS sin. Dette bekrefter at tilgangskontrollen fungerer: hver bedrift ser kun egne data.  
+**Bevis:** Isolasjonen i web-løsningen speiler nettverksisolasjonen — to lag med sikkerhet.
+
+---
+
 ## Spørringer til AI
 
 | # | Spørring | Svar brukt til |
