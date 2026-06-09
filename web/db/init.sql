@@ -34,9 +34,9 @@ INSERT INTO bedrifter (navn, vlan, ip_nett, gateway) VALUES
 -- Seed: brukere
 -- passord: 'passord123' hashed med bcrypt (cost 10)
 INSERT INTO brukere (brukernavn, passord_hash, bedrift_id) VALUES
-  ('bedrift1', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 1),
-  ('bedrift2', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 2),
-  ('bedrift3', '$2b$10$N9qo8uLOickgx2ZMRZoMyeIjZAgcfl7p92ldGxad68LJZdL17lhWy', 3);
+  ('bedrift1', '$2a$10$S7JUxiZPnq15godfSmISSeX.bPWzRjm7/mGPK/7QOb4bewUs63TIK', 1),
+  ('bedrift2', '$2a$10$S7JUxiZPnq15godfSmISSeX.bPWzRjm7/mGPK/7QOb4bewUs63TIK', 2),
+  ('bedrift3', '$2a$10$S7JUxiZPnq15godfSmISSeX.bPWzRjm7/mGPK/7QOb4bewUs63TIK', 3);
 
 -- Seed: dokumentasjon
 INSERT INTO dokumentasjon (bedrift_id, tittel, innhold) VALUES

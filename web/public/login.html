@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <title>Innlogging — KontorLeie</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <strong>KontorLeie AS</strong>
+    <nav><a href="index.html">Tilbake til forsiden</a></nav>
+  </header>
+
+  <main>
+    <h1>Kundeportal</h1>
+    <form id="loginForm">
+      <label for="brukernavn">Brukernavn</label>
+      <input type="text" id="brukernavn" name="brukernavn" required>
+
+      <label for="passord">Passord</label>
+      <input type="password" id="passord" name="passord" required>
+
+      <button type="submit">Logg inn</button>
+      <p class="feil" id="feilmelding"></p>
+    </form>
+  </main>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const res = await fetch("/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          brukernavn: document.getElementById("brukernavn").value,
+          passord:    document.getElementById("passord").value,
+        }),
+      });
+      const data = await res.json();
+      if (res.ok) {
+        window.location.href = "/portal.html";
+      } else {
+        document.getElementById("feilmelding").textContent = data.feil;
+      }
+    });
+  </script>
+</body>
+</html>

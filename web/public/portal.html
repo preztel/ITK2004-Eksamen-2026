@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <title>Min portal — KontorLeie</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <strong>KontorLeie — Kundeportal</strong>
+    <nav>
+      <span id="brukerNavn"></span>
+      <a href="#" id="loggUt">Logg ut</a>
+    </nav>
+  </header>
+
+  <main>
+    <h1 id="velkomst">Laster...</h1>
+
+    <div class="nettverk-info" id="nettverkInfo"></div>
+
+    <h2>Din nettverksdokumentasjon</h2>
+    <div id="docListe"></div>
+  </main>
+
+  <script>
+    async function lastPortal() {
+      const megRes = await fetch("/api/meg");
+      if (!megRes.ok) { window.location.href = "/login.html"; return; }
+      const meg = await megRes.json();
+
+      document.getElementById("velkomst").textContent = `Velkommen, ${meg.bedrift_navn}`;
+      document.getElementById("brukerNavn").textContent = meg.brukernavn;
+
+      const nettRes = await fetch("/api/nettverk");
+      const nett = await nettRes.json();
+      document.getElementById("nettverkInfo").innerHTML =
+        `<span><strong>VLAN:</strong> ${nett.vlan}</span>
+         <span><strong>Nettverk:</strong> ${nett.ip_nett}</span>
+         <span><strong>Gateway:</strong> ${nett.gateway}</span>`;
+
+      const docsRes = await fetch("/api/docs");
+      const docs = await docsRes.json();
+      const liste = document.getElementById("docListe");
+      docs.forEach(doc => {
+        liste.innerHTML += `
+          <div class="doc-kort">
+            <h3>${doc.tittel}</h3>
+            <pre>${doc.innhold}</pre>
+          </div>`;
+      });
+    }
+
+    document.getElementById("loggUt").addEventListener("click", async (e) => {
+      e.preventDefault();
+      await fetch("/logout", { method: "POST" });
+      window.location.href = "/login.html";
+    });
+
+    lastPortal();
+  </script>
+</body>
+</html>

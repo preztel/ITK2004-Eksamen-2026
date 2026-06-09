@@ -1,0 +1,100 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f0f7ff;
+  color: #1e293b;
+}
+
+header {
+  background: #065a82;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header a { color: #a8d4f5; text-decoration: none; margin-left: 1.5rem; }
+header a:hover { color: white; }
+
+main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+
+h1 { font-size: 2rem; margin-bottom: 1rem; color: #065a82; }
+h2 { font-size: 1.3rem; margin: 1.5rem 0 0.5rem; color: #1c7293; }
+
+.kort-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0;
+}
+
+.kort {
+  background: white;
+  border-left: 4px solid #065a82;
+  padding: 1rem 1.2rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.kort h3 { color: #065a82; margin-bottom: 0.4rem; }
+
+form {
+  background: white;
+  padding: 2rem;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  max-width: 400px;
+}
+
+label { display: block; margin-bottom: 0.3rem; font-weight: bold; }
+input {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+button {
+  background: #065a82;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+button:hover { background: #1c7293; }
+
+.feil { color: #dc2626; margin-top: 0.5rem; }
+
+.doc-kort {
+  background: white;
+  border-left: 4px solid #1c7293;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+.doc-kort h3 { color: #065a82; margin-bottom: 0.5rem; }
+.doc-kort pre {
+  white-space: pre-wrap;
+  font-family: Consolas, monospace;
+  font-size: 0.9rem;
+  color: #334155;
+}
+
+.nettverk-info {
+  background: #065a82;
+  color: white;
+  padding: 1rem 1.5rem;
+  border-radius: 6px;
+  margin-bottom: 1.5rem;
+}
+.nettverk-info span { margin-right: 1.5rem; }
+
+footer { text-align: center; padding: 2rem; color: #64748b; font-size: 0.9rem; }
