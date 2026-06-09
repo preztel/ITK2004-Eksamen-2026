@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  db:
+    image: mariadb:11
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassord
+      MYSQL_DATABASE: kontorutleie
+      MYSQL_USER: appbruker
+      MYSQL_PASSWORD: apppassord
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+
+  app:
+    build: .
+    restart: always
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: db
+      DB_USER: appbruker
+      DB_PASSWORD: apppassord
+      DB_NAME: kontorutleie
+      SESSION_SECRET: hemmelignoekkel123
+    depends_on:
+      - db
+
+volumes:
+  db_data:
