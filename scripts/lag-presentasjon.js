@@ -33,7 +33,7 @@ const header = (s, tittel) => {
   s.addShape(pres.shapes.RECTANGLE, { x: 0, y: 3.8, w: 10, h: 1.825, fill: { color: C.accent }, line: { color: C.accent } });
   s.addShape(pres.shapes.RECTANGLE, { x: 0, y: 3.8, w: 10, h: 0.07, fill: { color: C.mid }, line: { color: C.mid } });
   s.addText("Kontorutleie — IT-løsning", { x: 0.6, y: 0.6, w: 8.8, h: 1.1, fontSize: 42, bold: true, color: C.white, fontFace: "Calibri", align: "left", margin: 0 });
-  s.addText("Nettverk · Web · Active Directory", { x: 0.6, y: 1.75, w: 8.8, h: 0.6, fontSize: 20, color: "A8D4F5", fontFace: "Calibri", align: "left", margin: 0 });
+  s.addText("Web · Nettverk · Active Directory", { x: 0.6, y: 1.75, w: 8.8, h: 0.6, fontSize: 20, color: "A8D4F5", fontFace: "Calibri", align: "left", margin: 0 });
   s.addText([
     { text: "ITK2004 — VG2 Informasjonsteknologi", options: { breakLine: true } },
     { text: "Eksamensdato: 09.06.2026", options: {} }
@@ -66,43 +66,11 @@ const header = (s, tittel) => {
   });
 }
 
-// ─── SLIDE 3 — Drift: Topologi ───────────────────────────────────────────────
-{
-  const s = pres.addSlide();
-  s.background = { color: C.light };
-  header(s, "Oppgave 2 — Drift: Nettverkstopologi");
-  s.addImage({ path: path.resolve("bilder/alle_ip_config_ferdig.png"), x: 0.5, y: 1.1, w: 5.2, h: 3.8 });
-  const pts = ["1 switch (Cisco 2960), 1 router (Cisco 2911)", "3 bedrifter × (2 PC + 1 printer)", "Server i VLAN 99", "Router-on-a-stick med dot1Q", "Alle koblinger grønne — oppe"];
-  s.addText(pts.map((t, i) => ({ text: t, options: { bullet: true, breakLine: i < pts.length - 1 } })), {
-    x: 5.9, y: 1.3, w: 3.8, h: 2.5, fontSize: 13, color: C.text, fontFace: "Calibri"
-  });
-  s.addShape(pres.shapes.RECTANGLE, { x: 5.9, y: 4.1, w: 3.8, h: 0.6, fill: { color: C.green }, line: { color: C.green } });
-  s.addText("Oppgave 2 fullført ✓", { x: 5.9, y: 4.1, w: 3.8, h: 0.6, fontSize: 15, bold: true, color: C.white, fontFace: "Calibri", align: "center", valign: "middle", margin: 0 });
-}
+// ═══════════════════════════════════════════════════════════════════════════════
+// OPPGAVE 1 — UTVIKLING
+// ═══════════════════════════════════════════════════════════════════════════════
 
-// ─── SLIDE 4 — Drift: VLAN-konfig + running-config ───────────────────────────
-{
-  const s = pres.addSlide();
-  s.background = { color: C.light };
-  header(s, "Drift — VLAN og router-konfigurasjon");
-  s.addImage({ path: path.resolve("bilder/show_vlan_brief.png"), x: 0.5, y: 1.1, w: 4.5, h: 3.3 });
-  s.addImage({ path: path.resolve("bilder/running_config.png"), x: 5.2, y: 1.1, w: 4.5, h: 3.3 });
-  s.addText("show vlan brief — Switch0", { x: 0.5, y: 4.5, w: 4.5, h: 0.4, fontSize: 11, color: C.gray, fontFace: "Calibri", align: "center", italic: true, margin: 0 });
-  s.addText("show running-config — Router0", { x: 5.2, y: 4.5, w: 4.5, h: 0.4, fontSize: 11, color: C.gray, fontFace: "Calibri", align: "center", italic: true, margin: 0 });
-}
-
-// ─── SLIDE 5 — Drift: Ping + IP-konfig ───────────────────────────────────────
-{
-  const s = pres.addSlide();
-  s.background = { color: C.light };
-  header(s, "Drift — Isolasjon og IP-konfigurasjon bekreftet");
-  s.addImage({ path: path.resolve("bilder/ping_test.png"), x: 0.5, y: 1.1, w: 4.5, h: 3.3 });
-  s.addImage({ path: path.resolve("bilder/ip_config.png"), x: 5.2, y: 1.1, w: 4.5, h: 3.3 });
-  s.addText("Ping-test: intra-VLAN Reply ✓ / inter-VLAN Timed out ✓", { x: 0.5, y: 4.5, w: 4.5, h: 0.4, fontSize: 11, color: C.gray, fontFace: "Calibri", align: "center", italic: true, margin: 0 });
-  s.addText("IP-konfig PC0 — 192.168.10.2 / gateway 192.168.10.1", { x: 5.2, y: 4.5, w: 4.5, h: 0.4, fontSize: 11, color: C.gray, fontFace: "Calibri", align: "center", italic: true, margin: 0 });
-}
-
-// ─── SLIDE 6 — Web: Arkitektur ───────────────────────────────────────────────
+// ─── SLIDE 3 — Web: Arkitektur ───────────────────────────────────────────────
 {
   const s = pres.addSlide();
   s.background = { color: C.light };
@@ -124,7 +92,7 @@ const header = (s, tittel) => {
   });
 }
 
-// ─── SLIDE 7 — Web: Forside + Login ──────────────────────────────────────────
+// ─── SLIDE 4 — Web: Forside + Login ──────────────────────────────────────────
 {
   const s = pres.addSlide();
   s.background = { color: C.light };
@@ -135,7 +103,7 @@ const header = (s, tittel) => {
   s.addText("Innloggingsside for kundeportal", { x: 5.2, y: 4.5, w: 4.5, h: 0.4, fontSize: 11, color: C.gray, fontFace: "Calibri", align: "center", italic: true, margin: 0 });
 }
 
-// ─── SLIDE 8 — Web: Portal-isolasjon ─────────────────────────────────────────
+// ─── SLIDE 5 — Web: Portal-isolasjon ─────────────────────────────────────────
 {
   const s = pres.addSlide();
   s.background = { color: C.light };
@@ -150,7 +118,7 @@ const header = (s, tittel) => {
   });
 }
 
-// ─── SLIDE 9 — Database ───────────────────────────────────────────────────────
+// ─── SLIDE 6 — Database ───────────────────────────────────────────────────────
 {
   const s = pres.addSlide();
   s.background = { color: C.light };
@@ -172,6 +140,50 @@ const header = (s, tittel) => {
     { text: "  └── dokumentasjon (mange)", options: {} },
   ], { x: 5.1, y: 3.5, w: 4.2, h: 1.6, fontSize: 13, color: C.text, fontFace: "Consolas" });
 }
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// OPPGAVE 2 — DRIFT
+// ═══════════════════════════════════════════════════════════════════════════════
+
+// ─── SLIDE 7 — Drift: Topologi ───────────────────────────────────────────────
+{
+  const s = pres.addSlide();
+  s.background = { color: C.light };
+  header(s, "Oppgave 2 — Drift: Nettverkstopologi");
+  s.addImage({ path: path.resolve("bilder/alle_ip_config_ferdig.png"), x: 0.5, y: 1.1, w: 5.2, h: 3.8 });
+  const pts = ["1 switch (Cisco 2960), 1 router (Cisco 2911)", "3 bedrifter × (2 PC + 1 printer)", "Server i VLAN 99", "Router-on-a-stick med dot1Q", "Alle koblinger grønne — oppe"];
+  s.addText(pts.map((t, i) => ({ text: t, options: { bullet: true, breakLine: i < pts.length - 1 } })), {
+    x: 5.9, y: 1.3, w: 3.8, h: 2.5, fontSize: 13, color: C.text, fontFace: "Calibri"
+  });
+  s.addShape(pres.shapes.RECTANGLE, { x: 5.9, y: 4.1, w: 3.8, h: 0.6, fill: { color: C.green }, line: { color: C.green } });
+  s.addText("Oppgave 2 fullført ✓", { x: 5.9, y: 4.1, w: 3.8, h: 0.6, fontSize: 15, bold: true, color: C.white, fontFace: "Calibri", align: "center", valign: "middle", margin: 0 });
+}
+
+// ─── SLIDE 8 — Drift: VLAN-konfig + running-config ───────────────────────────
+{
+  const s = pres.addSlide();
+  s.background = { color: C.light };
+  header(s, "Drift — VLAN og router-konfigurasjon");
+  s.addImage({ path: path.resolve("bilder/show_vlan_brief.png"), x: 0.5, y: 1.1, w: 4.5, h: 3.3 });
+  s.addImage({ path: path.resolve("bilder/running_config.png"), x: 5.2, y: 1.1, w: 4.5, h: 3.3 });
+  s.addText("show vlan brief — Switch0", { x: 0.5, y: 4.5, w: 4.5, h: 0.4, fontSize: 11, color: C.gray, fontFace: "Calibri", align: "center", italic: true, margin: 0 });
+  s.addText("show running-config — Router0", { x: 5.2, y: 4.5, w: 4.5, h: 0.4, fontSize: 11, color: C.gray, fontFace: "Calibri", align: "center", italic: true, margin: 0 });
+}
+
+// ─── SLIDE 9 — Drift: Ping + IP-konfig ───────────────────────────────────────
+{
+  const s = pres.addSlide();
+  s.background = { color: C.light };
+  header(s, "Drift — Isolasjon og IP-konfigurasjon bekreftet");
+  s.addImage({ path: path.resolve("bilder/ping_test.png"), x: 0.5, y: 1.1, w: 4.5, h: 3.3 });
+  s.addImage({ path: path.resolve("bilder/ip_config.png"), x: 5.2, y: 1.1, w: 4.5, h: 3.3 });
+  s.addText("Ping-test: intra-VLAN Reply ✓ / inter-VLAN Timed out ✓", { x: 0.5, y: 4.5, w: 4.5, h: 0.4, fontSize: 11, color: C.gray, fontFace: "Calibri", align: "center", italic: true, margin: 0 });
+  s.addText("IP-konfig PC0 — 192.168.10.2 / gateway 192.168.10.1", { x: 5.2, y: 4.5, w: 4.5, h: 0.4, fontSize: 11, color: C.gray, fontFace: "Calibri", align: "center", italic: true, margin: 0 });
+}
+
+// ═══════════════════════════════════════════════════════════════════════════════
+// OPPGAVE 3 — BRUKERSTØTTE
+// ═══════════════════════════════════════════════════════════════════════════════
 
 // ─── SLIDE 10 — Brukerstøtte: Oversikt ──────────────────────────────────────
 {
@@ -230,7 +242,6 @@ const header = (s, tittel) => {
   s.background = { color: C.light };
   header(s, "Brukerstøtte B — Gi og fjerne mappetilgang");
 
-  // Del A
   s.addShape(pres.shapes.RECTANGLE, { x: 0.5, y: 1.1, w: 4.3, h: 0.38, fill: { color: C.mid }, line: { color: C.mid } });
   s.addText("Del A: Gi tilgang", { x: 0.5, y: 1.1, w: 4.3, h: 0.38, fontSize: 14, bold: true, color: C.white, fontFace: "Calibri", align: "center", valign: "middle", margin: 0 });
   const delA = ["Høyreklikk mappen → Egenskaper → Sikkerhet", "Rediger → Legg til gruppe", "Velg Endre-tillatelse (ikke Full kontroll)", "Bruk → OK → Test med bruker fra gruppen"];
@@ -238,7 +249,6 @@ const header = (s, tittel) => {
     x: 0.5, y: 1.55, w: 4.3, h: 2.0, fontSize: 12, color: C.text, fontFace: "Calibri", lineSpacingMultiple: 1.35
   });
 
-  // Del B
   s.addShape(pres.shapes.RECTANGLE, { x: 5.2, y: 1.1, w: 4.3, h: 0.38, fill: { color: C.orange }, line: { color: C.orange } });
   s.addText("Del B: Fjerne tilgang", { x: 5.2, y: 1.1, w: 4.3, h: 0.38, fontSize: 14, bold: true, color: C.white, fontFace: "Calibri", align: "center", valign: "middle", margin: 0 });
   const delB = ["Deaktiver kontoen (anbefalt — beholder historikk)", "Eller: fjern fra gruppe → fanen «Medlem av»", "Ikke slett brukeren — deaktiver"];
@@ -246,7 +256,6 @@ const header = (s, tittel) => {
     x: 5.2, y: 1.55, w: 4.3, h: 2.0, fontSize: 12, color: C.text, fontFace: "Calibri", lineSpacingMultiple: 1.35
   });
 
-  // Eksempel-boks
   s.addShape(pres.shapes.RECTANGLE, { x: 0.5, y: 3.65, w: 9, h: 1.55, fill: { color: "EFF6FF" }, line: { color: "BFDBFE" }, shadow: shadow() });
   s.addText("Eksempel — Bedrift 1 med 8 ansatte:", { x: 0.7, y: 3.72, w: 8.5, h: 0.35, fontSize: 13, bold: true, color: C.dark, fontFace: "Calibri", margin: 0 });
   s.addText("Mappen har kun gruppen Bedrift1-ansatte. Ny ansatt? Legg til i gruppen — tilgang følger. Ansatt slutter? Deaktiver konto. Mappen røres aldri.", {
@@ -260,12 +269,12 @@ const header = (s, tittel) => {
   s.background = { color: C.light };
   header(s, "Brukerstøtte C — Vanlige feil og løsninger");
   const feil = [
-    { problem: "Feil passord / konto låst",        losning: "AD → Høyreklikk bruker → Egenskaper → Konto → Lås opp" },
-    { problem: "Ser ikke delt mappe",               losning: "Sjekk gruppe-medlemskap og at mappen er delt (Deling-fanen)" },
-    { problem: "Tilgang nektet på fil",             losning: "Sjekk Sikkerhet-fanen — Avslå overstyrer alltid Tillat" },
-    { problem: "Kan ikke bytte passord",            losning: "Tilbakestill via AD → Høyreklikk → Tilbakestill passord" },
-    { problem: "Bruker ikke synlig i AD",           losning: "Vis → Avanserte funksjoner, bruk Handling → Finn..." },
-    { problem: "Ny ansatt mangler tilgang til mappe", losning: "Gruppemedlemskap oppdateres kun ved innlogging — logg ut og inn igjen" },
+    { problem: "Feil passord / konto låst",           losning: "AD → Høyreklikk bruker → Egenskaper → Konto → Lås opp" },
+    { problem: "Ser ikke delt mappe",                  losning: "Sjekk gruppe-medlemskap og at mappen er delt (Deling-fanen)" },
+    { problem: "Tilgang nektet på fil",                losning: "Sjekk Sikkerhet-fanen — Avslå overstyrer alltid Tillat" },
+    { problem: "Kan ikke bytte passord",               losning: "Tilbakestill via AD → Høyreklikk → Tilbakestill passord" },
+    { problem: "Bruker ikke synlig i AD",              losning: "Vis → Avanserte funksjoner, bruk Handling → Finn..." },
+    { problem: "Ny ansatt mangler tilgang til mappe",  losning: "Gruppemedlemskap oppdateres kun ved innlogging — logg ut og inn igjen" },
   ];
   feil.forEach((f, i) => {
     const col = i < 3 ? 0 : 1;
