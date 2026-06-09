@@ -66,3 +66,15 @@
 1. I **Active Directory Users and Computers**, klikk **Vis** → **Avanserte funksjoner**
 2. Bruk søk: **Handling** → **Finn...**
 3. Skriv inn brukernavnet og klikk **Finn nå**
+
+---
+
+## Ny ansatt logger inn men får ikke tilgang til mapper
+
+Dette er en vanlig fallgruve som ikke er åpenbar første gang.
+
+**Årsak:** Gruppemedlemskap oppdateres ikke midt i en pålogget økt — bare ved innlogging.
+
+**Løsning:** Be den ansatte logge helt ut og inn igjen. Tilgangen skal da fungere.
+
+> Denne feilen er veldig vanlig når noen nettopp er lagt til i en gruppe. Husk det som første løsning.
